@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -56,5 +55,25 @@ class MainActivity : AppCompatActivity() {
         dialog = BottomSheetDialog(this, R.style.BottomSheetTheme)
         dialog.setContentView(sheetLayoutBinding.root)
         setContentView(binding.root)
+
+        pollutionFragment = PollutionFragment()
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+
+                if (query!= null){
+                    city = query
+                }
+                getCurrentWeather(city)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
     }
 }
