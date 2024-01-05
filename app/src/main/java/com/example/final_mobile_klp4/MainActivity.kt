@@ -75,5 +75,16 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        //fetchLocation()
+        getCurrentWeather(city)
+
+        binding.tvForecast.setOnClickListener {
+            openDialog()
+        }
+
+        binding.tvLocation.setOnClickListener {
+            fetchLocation()
+        }
     }
 }
