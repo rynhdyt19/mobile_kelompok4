@@ -165,7 +165,6 @@ private fun fetchLocation() {
         getCurrentWeather(city)
     }
 }
-
 private fun openDialog() {
     lifecycleScope.launch {
         getForecast()
