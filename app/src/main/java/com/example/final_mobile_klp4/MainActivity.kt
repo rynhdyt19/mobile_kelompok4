@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-
         //fetchLocation()
         getCurrentWeather(city)
 
