@@ -165,3 +165,17 @@ private fun fetchLocation() {
         getCurrentWeather(city)
     }
 }
+
+private fun openDialog() {
+    lifecycleScope.launch {
+        getForecast()
+    }
+
+    sheetLayoutBinding.rvForecast.apply {
+        setHasFixedSize(true)
+        layoutManager = GridLayoutManager(this@MainActivity, 1, RecyclerView.HORIZONTAL, false)
+    }
+
+    dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+    dialog.show()
+}
