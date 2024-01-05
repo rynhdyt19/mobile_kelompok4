@@ -126,3 +126,42 @@ private fun fetchLocation() {
         getCurrentWeather(city)
     }
 }
+
+private fun fetchLocation() {
+    val task: Task<Location> = fusedLocationProviderClient.lastLocation
+
+
+    if (ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) != PackageManager.PERMISSION_GRANTED
+    ) {
+
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),101
+        )
+        return
+    }
+
+    task.addOnSuccessListener {
+        val geocoder=Geocoder(this,Locale.getDefault())
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            geocoder.getFromLocation(it.latitude,it.longitude,1, object: Geocoder.GeocodeListener{
+                override fun onGeocode(addresses: MutableList<Address>) {
+                    city = addresses[0].locality
+                }
+
+            })
+        }else{
+            val address = geocoder.getFromLocation(it.latitude,it.longitude,1) as List<Address>
+
+            city = address[0].locality
+        }
+        getCurrentWeather(city)
+    }
+}
