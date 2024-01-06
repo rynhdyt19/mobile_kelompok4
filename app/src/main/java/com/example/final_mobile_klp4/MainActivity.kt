@@ -178,3 +178,33 @@ private fun openDialog() {
     dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
     dialog.show()
 }
+
+private suspend fun getForecast() {
+    try {
+        val response = RetrofitInstance.api.getForecast(
+            city,
+            "metric",
+            applicationContext.getString(R.string.api_key)
+        )
+
+        if (response.isSuccessful && response.body() != null) {
+            val data = response.body()!!
+            val forecastArray: ArrayList<ForecastData> = data.list as ArrayList<ForecastData>
+
+            withContext(Dispatchers.Main) {
+                val adapter = RvAdapter(forecastArray)
+                sheetLayoutBinding.rvForecast.adapter = adapter
+                sheetLayoutBinding.tvSheet.text = "Perkiraan Cuaca Lima Hari Di ${data.city.name}"
+            }
+        } else {
+            // Handle API error response
+            withContext(Dispatchers.Main) {
+                Toast.makeText(applicationContext, "API Error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    } catch (e: Exception) {
+        withContext(Dispatchers.Main) {
+            Toast.makeText(applicationContext, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
