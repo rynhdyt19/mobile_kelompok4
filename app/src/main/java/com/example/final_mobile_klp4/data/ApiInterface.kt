@@ -1,4 +1,4 @@
-package com.example.final_mobile.data
+package com.example.final_mobile_klp4.data
 
 import com.example.final_mobile.data.forecastModels.Forecast
 import com.example.final_mobile.data.models.CurrentWeather
