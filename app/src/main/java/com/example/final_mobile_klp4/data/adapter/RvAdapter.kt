@@ -3,8 +3,8 @@ package com.example.final_mobile_klp4.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_mobile.data.forecastModels.ForecastData
-import com.example.final_mobile.databinding.RvItemLayoutBinding
+import com.example.final_mobile_klp4.data.forecastModels.ForecastData
+import com.example.final_mobile_klp4.databinding.RvItemLayoutBinding
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.Locale
