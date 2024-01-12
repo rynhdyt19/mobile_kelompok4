@@ -15,14 +15,15 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.final_mobile.R
+import com.example.final_mobile.databinding.ActivityMainBinding
+import com.example.final_mobile.databinding.BottomSheetLayoutBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.example.final_mobile_klp4.adapter.RvAdapter
 import com.example.final_mobile_klp4.data.forecastModels.ForecastData
-import com.example.final_mobile_klp4.databinding.ActivityMainBinding
-import com.example.final_mobile_klp4.databinding.BottomSheetLayoutBinding
 import com.example.final_mobile_klp4.utils.RetrofitInstance
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -126,44 +127,6 @@ private fun fetchLocation() {
     }
 }
 
-private fun fetchLocation() {
-    val task: Task<Location> = fusedLocationProviderClient.lastLocation
-
-
-    if (ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED
-    ) {
-
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),101
-        )
-        return
-    }
-
-    task.addOnSuccessListener {
-        val geocoder=Geocoder(this,Locale.getDefault())
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            geocoder.getFromLocation(it.latitude,it.longitude,1, object: Geocoder.GeocodeListener{
-                override fun onGeocode(addresses: MutableList<Address>) {
-                    city = addresses[0].locality
-                }
-
-            })
-        }else{
-            val address = geocoder.getFromLocation(it.latitude,it.longitude,1) as List<Address>
-
-            city = address[0].locality
-        }
-        getCurrentWeather(city)
-    }
-}
 private fun openDialog() {
     lifecycleScope.launch {
         getForecast()
