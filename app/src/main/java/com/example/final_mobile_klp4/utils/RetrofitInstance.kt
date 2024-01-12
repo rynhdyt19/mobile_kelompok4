@@ -1,6 +1,7 @@
-package com.example.final_mobile.utils
+package com.example.final_mobile_klp4.utils
 
-import com.example.final_mobile.data.ApiInterface
+import com.example.final_mobile.utils.Util
+import com.example.final_mobile_klp4.data.ApiInterface
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
