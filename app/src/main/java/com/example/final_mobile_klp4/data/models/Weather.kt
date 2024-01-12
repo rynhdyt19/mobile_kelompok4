@@ -1,4 +1,4 @@
-package com.example.final_mobile.data.models
+package com.example.final_mobile_klp4.data.models
 
 data class Weather(
     val description: String,
