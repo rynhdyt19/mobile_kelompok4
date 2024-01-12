@@ -1,4 +1,4 @@
-package com.example.final_mobile.data.forecastModels
+package com.example.final_mobile_klp4.data.forecastModels
 
 data class Main(
     val feels_like: Double,

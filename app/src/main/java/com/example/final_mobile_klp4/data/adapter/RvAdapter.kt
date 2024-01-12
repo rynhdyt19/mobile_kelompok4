@@ -1,4 +1,4 @@
-package com.example.final_mobile.adapter
+package com.example.final_mobile_klp4.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
