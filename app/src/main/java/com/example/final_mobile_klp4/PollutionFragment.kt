@@ -13,7 +13,7 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.example.final_mobile.databinding.FragmentPollutionBinding
+import com.example.final_mobile_klp4.databinding.FragmentPollutionBinding
 import java.lang.StringBuilder
 
 

@@ -15,9 +15,9 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.final_mobile.R
-import com.example.final_mobile.databinding.ActivityMainBinding
-import com.example.final_mobile.databinding.BottomSheetLayoutBinding
+import com.example.final_mobile_klp4.R
+import com.example.final_mobile_klp4.databinding.ActivityMainBinding
+import com.example.final_mobile_klp4.databinding.BottomSheetLayoutBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
