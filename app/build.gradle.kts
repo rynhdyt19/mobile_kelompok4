@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.final_mobile"
+    namespace = "com.example.final_mobile_klp4"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.final_mobile"
+        applicationId = "com.example.final_mobile_klp4"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
