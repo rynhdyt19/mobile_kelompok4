@@ -86,7 +86,6 @@ class MainActivity : AppCompatActivity() {
             fetchLocation()
         }
     }
-}
 
 private fun fetchLocation() {
     val task: Task<Location> = fusedLocationProviderClient.lastLocation
@@ -329,9 +328,17 @@ private fun getPollution(lat: Double, lon: Double) {
                     }
                 }
             }
-
         }
     }
+}
+
+private fun dateFormatConverter(date: Long): String {
+
+    return SimpleDateFormat(
+        "hh:mm a",
+        Locale.ENGLISH
+    ).format(Date(date * 1000))
+}
 }
 
 
