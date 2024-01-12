@@ -1,5 +1,7 @@
 package com.example.final_mobile_klp4.data.forecastModels
 
+import com.example.final_mobile.data_klp4.forecastModels.Sys
+
 data class ForecastData(
     val clouds: Clouds,
     val dt: Int,

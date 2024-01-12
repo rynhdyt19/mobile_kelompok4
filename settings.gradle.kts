@@ -14,6 +14,5 @@ dependencyResolutionManagement {
         maven(url = "https://jitpack.io")
     }
 }
-
 rootProject.name = "final_mobile"
 include(":app")
