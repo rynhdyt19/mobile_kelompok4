@@ -208,3 +208,68 @@ private suspend fun getForecast() {
         }
     }
 }
+
+@SuppressLint("SetTextI18n")
+@OptIn(DelicateCoroutinesApi::class)
+private fun getCurrentWeather(city: String) {
+    lifecycleScope.launch(Dispatchers.IO) {
+        val response = try {
+            RetrofitInstance.api.getCurrentWeather(
+                city,
+                "metric",
+                applicationContext.getString(R.string.api_key)
+            )
+        } catch (e: IOException) {
+            Toast.makeText(applicationContext, "app error ${e.message}", Toast.LENGTH_SHORT)
+                .show()
+            return@launch
+        } catch (e: HttpException) {
+            Toast.makeText(applicationContext, "http error ${e.message}", Toast.LENGTH_SHORT)
+                .show()
+            return@launch
+        }
+
+        if (response.isSuccessful && response.body() != null) {
+            withContext(Dispatchers.Main) {
+
+                val data = response.body()!!
+
+                val iconId = data.weather[0].icon
+
+                val imgUrl = "https://openweathermap.org/img/wn/$iconId@4x.png"
+
+                Picasso.get().load(imgUrl).into(binding.imgWeather)
+
+                binding.tvSunset.text =
+                    dateFormatConverter(
+                        data.sys.sunset.toLong()
+                    )
+
+                binding.tvSunrise.text =
+                    dateFormatConverter(
+                        data.sys.sunrise.toLong()
+                    )
+
+                binding.apply {
+                    tvStatus.text = data.weather[0].description
+                    tvWind.text = "${data.wind.speed} KM/H"
+                    tvLocation.text = "${data.name}\n${data.sys.country}"
+                    tvTemp.text = "${data.main.temp.toInt()}°C"
+                    tvFeelsLike.text = "Terasa Seperti: ${data.main.feels_like.toInt()}°C"
+                    tvMinTemp.text = "Min temp: ${data.main.temp_min.toInt()}°C"
+                    tvMaxTemp.text = "Max temp: ${data.main.temp_max.toInt()}°C"
+                    tvHumidity.text = "${data.main.humidity} %"
+                    tvPressure.text = "${data.main.pressure} hPa"
+                    tvUpdateTime.text = "Update Terakhir : ${
+                        dateFormatConverter(
+                            data.dt.toLong()
+                        )
+                    }"
+
+                    getPollution(data.coord.lat, data.coord.lon)
+                }
+
+            }
+        }
+    }
+}
