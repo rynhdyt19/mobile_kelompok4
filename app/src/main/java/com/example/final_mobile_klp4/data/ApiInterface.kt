@@ -1,8 +1,8 @@
 package com.example.final_mobile_klp4.data
 
-import com.example.final_mobile.data.forecastModels.Forecast
-import com.example.final_mobile.data.models.CurrentWeather
-import com.example.final_mobile.data.pollutionModels.PollutionData
+import com.example.final_mobile_klp4.data.forecastModels.Forecast
+import com.example.final_mobile_klp4.data.models.CurrentWeather
+import com.example.final_mobile_klp4.data.pollutionModels.PollutionData
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
