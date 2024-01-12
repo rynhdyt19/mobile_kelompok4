@@ -1,4 +1,4 @@
-package com.example.final_mobile.data.pollutionModels
+package com.example.final_mobile_klp4.data.pollutionModels
 
 data class Pollution(
     val components: Components,
